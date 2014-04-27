@@ -37,7 +37,7 @@ namespace AlphaTab.Wpf.Share.ViewModel
             set
             {
                 _isSelected = value;
-                OnPropertyChanged();
+                OnPropertyChanged("IsSelected");
             }
         }
 
@@ -47,7 +47,7 @@ namespace AlphaTab.Wpf.Share.ViewModel
             set
             {
                 _trackType = value;
-                OnPropertyChanged();
+                OnPropertyChanged("TrackType");
             }
         }
 
@@ -57,7 +57,7 @@ namespace AlphaTab.Wpf.Share.ViewModel
             set
             {
                 _track.name = value;
-                OnPropertyChanged();
+                OnPropertyChanged("Name");
             }
         }
 
@@ -67,7 +67,7 @@ namespace AlphaTab.Wpf.Share.ViewModel
             set
             {
                 _track.playbackInfo.volume = value;
-                OnPropertyChanged();
+                OnPropertyChanged("Volume");
             }
         }
 
@@ -77,7 +77,7 @@ namespace AlphaTab.Wpf.Share.ViewModel
             set
             {
                 _track.playbackInfo.isSolo = value;
-                OnPropertyChanged();
+                OnPropertyChanged("IsSolo");
             }
         }
 
@@ -87,7 +87,7 @@ namespace AlphaTab.Wpf.Share.ViewModel
             set
             {
                 _track.playbackInfo.isMute = value;
-                OnPropertyChanged();
+                OnPropertyChanged("IsMute");
             }
         }
 
@@ -97,7 +97,7 @@ namespace AlphaTab.Wpf.Share.ViewModel
             set
             {
                 _usedBars = value;
-                OnPropertyChanged();
+                OnPropertyChanged("UsedBars");
             }
         }
 
@@ -107,7 +107,7 @@ namespace AlphaTab.Wpf.Share.ViewModel
             set
             {
                 _track = value;
-                OnPropertyChanged();
+                OnPropertyChanged("Track");
             }
         }
 
@@ -132,7 +132,7 @@ namespace AlphaTab.Wpf.Share.ViewModel
             {
                 TrackType = TrackType.BassGuitar;
             }
-            else 
+            else
             {
                 TrackType = TrackType.Default;
             }
@@ -141,28 +141,28 @@ namespace AlphaTab.Wpf.Share.ViewModel
             _usedBars = new bool[track.bars.length];
             for (int barI = 0; barI < track.bars.length; barI++)
             {
-                Bar bar = (Bar) track.bars[barI];
+                Bar bar = (Bar)track.bars[barI];
                 _usedBars[barI] = false;
 
                 for (int voiceI = 0; voiceI < bar.voices.length && (!_usedBars[barI]); voiceI++)
                 {
-                    Voice voice = (Voice) bar.voices[voiceI];
+                    Voice voice = (Voice)bar.voices[voiceI];
                     for (int beatI = 0; beatI < voice.beats.length; beatI++)
                     {
-                        Beat b = (Beat) voice.beats[beatI];
+                        Beat b = (Beat)voice.beats[beatI];
                         if (!b.isRest())
                         {
                             _usedBars[barI] = true;
                         }
                     }
-                    
-                }   
+
+                }
             }
         }
 
 
         public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected virtual void OnPropertyChanged(string propertyName)// = null) [CallerMemberName]
         {
             OnPropertyChangedExplicit(propertyName);
         }
