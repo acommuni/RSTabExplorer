@@ -17,7 +17,7 @@
  */
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using alphatab.model;
+using AlphaTab.Model;
 
 namespace AlphaTab.Wpf.Share.ViewModel
 {
@@ -53,40 +53,40 @@ namespace AlphaTab.Wpf.Share.ViewModel
 
         public string Name
         {
-            get { return _track.name; }
+            get { return _track.Name; }
             set
             {
-                _track.name = value;
+                _track.Name = value;
                 OnPropertyChanged("Name");
             }
         }
 
         public int Volume
         {
-            get { return _track.playbackInfo.volume; }
+            get { return _track.PlaybackInfo.Volume; }
             set
             {
-                _track.playbackInfo.volume = value;
+                _track.PlaybackInfo.Volume = value;
                 OnPropertyChanged("Volume");
             }
         }
 
         public bool IsSolo
         {
-            get { return _track.playbackInfo.isSolo; }
+            get { return _track.PlaybackInfo.IsSolo; }
             set
             {
-                _track.playbackInfo.isSolo = value;
+                _track.PlaybackInfo.IsSolo = value;
                 OnPropertyChanged("IsSolo");
             }
         }
 
         public bool IsMute
         {
-            get { return _track.playbackInfo.isMute; }
+            get { return _track.PlaybackInfo.IsMute; }
             set
             {
-                _track.playbackInfo.isMute = value;
+                _track.PlaybackInfo.IsMute = value;
                 OnPropertyChanged("IsMute");
             }
         }
@@ -116,19 +116,19 @@ namespace AlphaTab.Wpf.Share.ViewModel
             _track = track;
 
             // general midi programs
-            if (track.isPercussion)
+            if (track.IsPercussion)
             {
                 TrackType = TrackType.Drums;
             }
-            else if (track.playbackInfo.program >= 0 && track.playbackInfo.program <= 6)
+            else if (track.PlaybackInfo.Program >= 0 && track.PlaybackInfo.Program <= 6)
             {
                 TrackType = TrackType.Piano;
             }
-            else if (track.playbackInfo.program >= 26 && track.playbackInfo.program <= 31)
+            else if (track.PlaybackInfo.Program >= 26 && track.PlaybackInfo.Program <= 31)
             {
                 TrackType = TrackType.ElectricGuitar;
             }
-            else if (track.playbackInfo.program >= 32 && track.playbackInfo.program <= 39)
+            else if (track.PlaybackInfo.Program >= 32 && track.PlaybackInfo.Program <= 39)
             {
                 TrackType = TrackType.BassGuitar;
             }
@@ -138,19 +138,19 @@ namespace AlphaTab.Wpf.Share.ViewModel
             }
 
             // scan all bars if they have any note 
-            _usedBars = new bool[track.bars.length];
-            for (int barI = 0; barI < track.bars.length; barI++)
+            _usedBars = new bool[track.Bars.Count];
+            for (int barI = 0; barI < track.Bars.Count; barI++)
             {
-                Bar bar = (Bar)track.bars[barI];
+                Bar bar = (Bar)track.Bars[barI];
                 _usedBars[barI] = false;
 
-                for (int voiceI = 0; voiceI < bar.voices.length && (!_usedBars[barI]); voiceI++)
+                for (int voiceI = 0; voiceI < bar.Voices.Count && (!_usedBars[barI]); voiceI++)
                 {
-                    Voice voice = (Voice)bar.voices[voiceI];
-                    for (int beatI = 0; beatI < voice.beats.length; beatI++)
+                    Voice voice = (Voice)bar.Voices[voiceI];
+                    for (int beatI = 0; beatI < voice.Beats.Count; beatI++)
                     {
-                        Beat b = (Beat)voice.beats[beatI];
-                        if (!b.isRest())
+                        Beat b = (Beat)voice.Beats[beatI];
+                        if (!b.IsRest)
                         {
                             _usedBars[barI] = true;
                         }

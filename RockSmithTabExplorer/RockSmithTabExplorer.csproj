@@ -52,6 +52,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AlphaTab">
+      <HintPath>..\lib\AlphaTab.dll</HintPath>
+    </Reference>
     <Reference Include="MiscUtil">
       <HintPath>..\lib\MiscUtil.dll</HintPath>
     </Reference>
@@ -181,10 +184,6 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
-    <ProjectReference Include="..\AlphaTab.Core\AlphaTab.Core.csproj">
-      <Project>{A3A01A41-EE58-4C99-867B-D88D2512F72F}</Project>
-      <Name>AlphaTab.Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.1.23.2\build\Fody.targets" Condition="Exists('..\packages\Fody.1.23.2\build\Fody.targets')" />
