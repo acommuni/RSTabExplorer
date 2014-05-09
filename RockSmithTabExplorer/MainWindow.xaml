@@ -62,8 +62,8 @@
             </Grid>
         </Grid>
 
-        <StatusBar Grid.Row="2">
-            <TextBlock Grid.Row="0" Text="{Binding SongCollection.StatusString}"></TextBlock>
+        <StatusBar Grid.Row="2" DataContext="{Binding StatusBar, Source={StaticResource Locator}}">
+            <TextBlock Grid.Row="0" Text="{Binding Path=Status}" />
         </StatusBar>
     </Grid>
 </Window>

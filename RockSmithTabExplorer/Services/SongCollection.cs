@@ -9,7 +9,7 @@ namespace RockSmithTabExplorer
     public class SongCollection : INotifyPropertyChanged //SongCollection
     {
         private List<ArcFileWrapper> files = new List<ArcFileWrapper>();
-        public string StatusString { get; private set; }
+        public List<string> fileNames = new List<string>();
 
         public List<RSSongInfo> AvaliableSongInfos { get; private set; }
 
@@ -22,25 +22,16 @@ namespace RockSmithTabExplorer
         {
             var arcFile = new ArcFileWrapper(file);
             files.Add(arcFile);
-
-            if (StatusString != null && StatusString.Length > 0)
-            {
-                StatusString = StatusString + ", " + file;
-            }
-            else
-            {
-                StatusString = file;
-            }
+            fileNames.Add(file);
 
             AvaliableSongInfos = AvaliableSongInfos.Union(arcFile.GetAllSongInfos()).ToList();
-            OnPropertyChanged("StatusString");
             OnPropertyChanged("AvaliableSongInfos");
         }
 
         public void Clear()
         {
-            StatusString = "";
             files.Clear();
+            fileNames.Clear();
             AvaliableSongInfos = new List<RSSongInfo>();
         }
 

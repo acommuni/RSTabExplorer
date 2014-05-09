@@ -148,6 +148,7 @@
     <Compile Include="Services\ErrorService.cs" />
     <Compile Include="Services\IDialogService.cs" />
     <Compile Include="Services\IErrorService.cs" />
+    <Compile Include="ViewModel\StatusViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Page Include="Controls\InfoTabs.xaml">
       <SubType>Designer</SubType>

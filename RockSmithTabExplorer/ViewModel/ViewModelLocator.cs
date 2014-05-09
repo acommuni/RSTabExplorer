@@ -32,6 +32,7 @@ namespace RockSmithTabExplorer.ViewModel
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<SongCollection>();
             SimpleIoc.Default.Register<PrintService>();
+            SimpleIoc.Default.Register<StatusViewModel>();
             SimpleIoc.Default.Register<ExportImageService>();
         }
 
@@ -49,6 +50,7 @@ namespace RockSmithTabExplorer.ViewModel
             }
         }
 
+        public StatusViewModel StatusBar { get { return ServiceLocator.Current.GetInstance<StatusViewModel>(); } }
         /// <summary>
         /// Cleans up all the resources.
         /// </summary>
