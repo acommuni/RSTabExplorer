@@ -26,6 +26,8 @@ using System.Runtime.CompilerServices;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight;
 using AlphaTab.Model;
+using RockSmithTabExplorer.Services;
+using RockSmithTabExplorer.Controls;
 
 namespace RockSmithTabExplorer.ViewModel
 {
@@ -37,6 +39,8 @@ namespace RockSmithTabExplorer.ViewModel
         // references to the services we want to use
         private readonly IDialogService _dialogService;
         private readonly IErrorService _errorService;
+        private readonly PrintService _printService;
+        private readonly ExportImageService _saveService;
         #region Score Data
 
         // those properties store the score information
@@ -94,6 +98,8 @@ namespace RockSmithTabExplorer.ViewModel
         public ICommand OpenFileCommand { get; private set; }
         public ICommand LoadDiskTracksCommand { get; private set; }
         public ICommand LoadDLCTracksCommand { get; private set; }
+        public ICommand PrintCommand { get; private set; }
+        public ICommand SaveCommand { get; private set; }
 
         RSSongInfo _selectedRockSmithSong;
         public RSSongInfo SelectedRockSmithSong
@@ -242,10 +248,12 @@ namespace RockSmithTabExplorer.ViewModel
 
         #endregion
 
-        public MainViewModel(IDialogService dialogService, IErrorService errorService, SongCollection songCollection)
+        public MainViewModel(IDialogService dialogService, IErrorService errorService, SongCollection songCollection, PrintService printService, ExportImageService saveService)
         {
             _dialogService = dialogService;
             _errorService = errorService;
+            _printService = printService;
+            _saveService = saveService;
             this.songCollection = songCollection;
             songLoader = new SongLoader(_dialogService, songCollection);
 
@@ -257,6 +265,8 @@ namespace RockSmithTabExplorer.ViewModel
             OpenFileCommand = new RelayCommand(songLoader.OpenFile);
             LoadDiskTracksCommand = new RelayCommand(songLoader.LoadDiskTracks);
             LoadDLCTracksCommand = new RelayCommand(songLoader.LoadDLCTracks);
+            PrintCommand = new RelayCommand<TabControl>(PrintTab);
+            SaveCommand = new RelayCommand<TabControl>(SaveTabImage);
 
             SelectedGuitarPath = RockSmithTabExplorer.Properties.Settings.Default.GuitarPath;
 
@@ -264,6 +274,15 @@ namespace RockSmithTabExplorer.ViewModel
                 IsATrackLoaded = true;
         }
 
+        private void SaveTabImage(TabControl tabControl)
+        {
+            _saveService.SavePNGFromDialog(tabControl, Score.Artist + " - " + ScoreTitle);
+        }
+
+        private void PrintTab(TabControl tabControl)
+        {
+            _printService.Print(tabControl, Score.Artist + " - " + ScoreTitle);
+        }
 
     }
 }

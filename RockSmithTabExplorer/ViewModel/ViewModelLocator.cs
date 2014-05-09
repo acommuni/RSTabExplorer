@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
+using RockSmithTabExplorer.Services;
 
 namespace RockSmithTabExplorer.ViewModel
 {
@@ -30,6 +31,8 @@ namespace RockSmithTabExplorer.ViewModel
             SimpleIoc.Default.Register<IDialogService, DialogService>();
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<SongCollection>();
+            SimpleIoc.Default.Register<PrintService>();
+            SimpleIoc.Default.Register<ExportImageService>();
         }
 
         /// <summary>
