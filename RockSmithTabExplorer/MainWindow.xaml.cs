@@ -19,6 +19,7 @@ using System.Windows;
 using AlphaTab.Wpf.Share.Data;
 using RockSmithTabExplorer.ViewModel;
 using System.Reflection;
+using RockSmithTabExplorer.Controls;
 
 namespace AlphaTab.Wpf.Gdi
 {
@@ -32,6 +33,8 @@ namespace AlphaTab.Wpf.Gdi
             InitializeComponent();
             this.Title = this.Title + " - v" + Assembly.GetEntryAssembly().GetName().Version.ToString();
         }
+
+        public TabControl TabControl { get { return TablatureControl; } }
 
         private void OnRenderFinished(object sender, RoutedEventArgs e)
         {

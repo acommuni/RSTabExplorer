@@ -9,7 +9,7 @@
         <BooleanToVisibilityConverter x:Key="BoolToVisibility" />
     </UserControl.Resources>
 
-    <DockPanel Background="#616362" Visibility="{Binding TrackToolBarVisible, Converter={StaticResource BoolToVisibility}}">
+    <DockPanel Background="#616362" Visibility="{Binding IsATrackLoaded, Converter={StaticResource BoolToVisibility}}">
         <ToolBarPanel DockPanel.Dock="Left" Orientation="Horizontal">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="6,0,0,0">
                 <Label Foreground="#FFDCE2E5">Track:</Label>

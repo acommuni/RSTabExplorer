@@ -64,7 +64,7 @@ namespace RockSmithTabExplorer.ViewModel
                 RaisePropertyChanged("Score");
                 RaisePropertyChanged("ScoreTitle");
                 RaisePropertyChanged("CurrentScoreTrack");
-                TrackToolBarVisible = _score != null;
+                IsATrackLoaded = _score != null;
             }
         }
 
@@ -218,14 +218,14 @@ namespace RockSmithTabExplorer.ViewModel
             }
         }
 
-        bool _trackToolBarVisible = false;
-        public bool TrackToolBarVisible
+        bool _isATrackLoaded = false;
+        public bool IsATrackLoaded
         {
-            get { return _trackToolBarVisible; }
+            get { return _isATrackLoaded; }
             private set
             {
-                _trackToolBarVisible = value;
-                RaisePropertyChanged("TrackToolBarVisible");
+                _isATrackLoaded = value;
+                RaisePropertyChanged("IsATrackLoaded");
             }
         }
 
@@ -261,7 +261,7 @@ namespace RockSmithTabExplorer.ViewModel
             SelectedGuitarPath = RockSmithTabExplorer.Properties.Settings.Default.GuitarPath;
 
             if (ViewModelBase.IsInDesignModeStatic)
-                TrackToolBarVisible = true;
+                IsATrackLoaded = true;
         }
 
 

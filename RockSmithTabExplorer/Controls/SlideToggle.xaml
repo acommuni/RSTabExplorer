@@ -71,7 +71,8 @@
                             </Trigger.EnterActions>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
-                            <!-- ToDo: Add Style for Isenabled == False -->
+                            <Setter Property="Control.Opacity" Value="0.4" />
+                            <Setter Property="Margin" TargetName="slider" Value="26.5,0,0,0"  />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
