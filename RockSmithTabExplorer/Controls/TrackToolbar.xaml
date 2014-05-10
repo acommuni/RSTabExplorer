@@ -3,8 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             d:DesignHeight="30" d:DesignWidth="700">
+             mc:Ignorable="d"
+             d:DesignHeight="30" d:DesignWidth="700"
+             DataContext="{Binding TrackToolbar, Source={StaticResource Locator}}"
+             >
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVisibility" />
     </UserControl.Resources>
@@ -13,7 +15,7 @@
         <ToolBarPanel DockPanel.Dock="Left" Orientation="Horizontal">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="6,0,0,0">
                 <Label Foreground="#FFDCE2E5">Track:</Label>
-                <ComboBox ItemsSource="{Binding SelectedRockSmithSong.TrackInfos}" SelectedItem="{Binding SelectedRockSmithTrack, Mode=TwoWay}"/>
+                <ComboBox ItemsSource="{Binding CurrentSongInfo.TrackInfos}" SelectedItem="{Binding TODOOOOOOOOOOOOOOOOOOOOOOOOOOOCurrentSongInfo, Mode=TwoWay}"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="8,0,0,0">

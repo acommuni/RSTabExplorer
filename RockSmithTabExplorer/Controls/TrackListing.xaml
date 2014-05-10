@@ -4,7 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="250">
+             d:DesignHeight="400" d:DesignWidth="250"
+             DataContext="{Binding TrackListing, Source={StaticResource Locator}}"
+             >
     <UserControl.Resources>
         <DataTemplate x:Key="HeaderTemplateArrowUp">
             <DockPanel>
@@ -20,7 +22,7 @@
         </DataTemplate>
     </UserControl.Resources>
 
-    <ListView x:Name="TrackList" ItemsSource="{Binding SongCollection.AvaliableSongInfos}" SelectedItem="{Binding SelectedRockSmithSong, Mode=TwoWay}" GridViewColumnHeader.Click="SortClickHandler">
+    <ListView x:Name="TrackList" ItemsSource="{Binding SongCollection.AvaliableSongInfos}" SelectedItem="{Binding SelectedSongInfo, Mode=TwoWay}" GridViewColumnHeader.Click="SortClickHandler">
         <ListView.View>
             <GridView>
                 <GridViewColumn DisplayMemberBinding="{Binding SongName}" Width="120">

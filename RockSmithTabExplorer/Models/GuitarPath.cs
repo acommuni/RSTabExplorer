@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.ComponentModel;
 
-namespace RockSmithTabExplorer.ViewModel
+namespace RockSmithTabExplorer
 {
     public class GuitarPath
     {
@@ -14,6 +14,19 @@ namespace RockSmithTabExplorer.ViewModel
         public GuitarPath(string name)
         {
             Name = name;
+        }
+
+        public static GuitarPath FromSettings()
+        {
+            string name = RockSmithTabExplorer.Properties.Settings.Default.GuitarPath;
+            return new GuitarPath(name);
+        }
+
+        public static GuitarPath Persist(string name)
+        {
+            RockSmithTabExplorer.Properties.Settings.Default.GuitarPath = name;
+            RockSmithTabExplorer.Properties.Settings.Default.Save();
+            return new GuitarPath(name);
         }
 
         //AvailableSongs.SelectMany(s => s.TrackInfos, (s, t) => t.Name).Distinct().ToList().ForEach(Console.WriteLine);

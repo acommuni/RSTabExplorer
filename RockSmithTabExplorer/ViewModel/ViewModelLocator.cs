@@ -30,7 +30,12 @@ namespace RockSmithTabExplorer.ViewModel
             SimpleIoc.Default.Register<IErrorService, ErrorService>();
             SimpleIoc.Default.Register<IDialogService, DialogService>();
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<SongLoader>();
+            SimpleIoc.Default.Register<MainToolbarViewModel>();
+            SimpleIoc.Default.Register<TrackToolbarViewModel>();
+            SimpleIoc.Default.Register<TrackListingViewModel>();
             SimpleIoc.Default.Register<SongCollection>();
+            SimpleIoc.Default.Register<CurrentSongService>();
             SimpleIoc.Default.Register<PrintService>();
             SimpleIoc.Default.Register<StatusViewModel>();
             SimpleIoc.Default.Register<ExportImageService>();
@@ -50,7 +55,11 @@ namespace RockSmithTabExplorer.ViewModel
             }
         }
 
+        public MainToolbarViewModel MainToolbar { get { return ServiceLocator.Current.GetInstance<MainToolbarViewModel>(); } }
+        public TrackToolbarViewModel TrackToolbar { get { return ServiceLocator.Current.GetInstance<TrackToolbarViewModel>(); } }
+        public TrackListingViewModel TrackListing { get { return ServiceLocator.Current.GetInstance<TrackListingViewModel>(); } }
         public StatusViewModel StatusBar { get { return ServiceLocator.Current.GetInstance<StatusViewModel>(); } }
+
         /// <summary>
         /// Cleans up all the resources.
         /// </summary>

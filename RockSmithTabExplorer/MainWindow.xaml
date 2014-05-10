@@ -53,7 +53,7 @@
                         <!-- The Background of the tablature -->
                         <Border VerticalAlignment="Top" Background="#F5F5F5" Name="TablatureContainer">
                             <!-- The Actual AlphaTab control with a binding to a track -->
-                            <c:TabControl x:Name="TablatureControl" Track="{Binding CurrentScoreTrack}" RenderFinished="OnRenderFinished" ZoomEnabled="false" />
+                            <c:TabControl x:Name="TablatureControl" Track="{Binding CurrentTrack}" RenderFinished="OnRenderFinished" ZoomEnabled="false" />
                         </Border>
                     </Grid>
                 </ScrollViewer>

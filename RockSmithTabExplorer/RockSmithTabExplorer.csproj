@@ -130,6 +130,8 @@
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\LoadState.cs" />
+    <Compile Include="Services\CurrentSongService.cs" />
     <Compile Include="Services\ExportImageService.cs" />
     <Compile Include="Services\PrintService.cs" />
     <Compile Include="Services\RockSmithImporter.cs" />
@@ -137,8 +139,9 @@
     <Compile Include="Services\SongLoader.cs" />
     <Compile Include="Services\SongCollection.cs" />
     <Compile Include="Utils\NonClosingStream.cs" />
+    <Compile Include="ViewModel\MainToolbarViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="ViewModel\GuitarPath.cs" />
+    <Compile Include="Models\GuitarPath.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -149,6 +152,8 @@
     <Compile Include="Services\IDialogService.cs" />
     <Compile Include="Services\IErrorService.cs" />
     <Compile Include="ViewModel\StatusViewModel.cs" />
+    <Compile Include="ViewModel\TrackListingViewModel.cs" />
+    <Compile Include="ViewModel\TrackToolbarViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Page Include="Controls\InfoTabs.xaml">
       <SubType>Designer</SubType>

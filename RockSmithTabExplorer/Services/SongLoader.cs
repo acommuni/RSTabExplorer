@@ -6,6 +6,7 @@ using AlphaTab.Wpf.Share.Data;
 using System.IO;
 using System.ComponentModel;
 using System.Windows;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace RockSmithTabExplorer
 {
@@ -19,14 +20,11 @@ namespace RockSmithTabExplorer
             this.songCollection = songCollection;
         }
 
-        private bool isLoading=false;
-        public bool IsLoading
+        private bool IsLoading
         {
-            get { return isLoading; }
-            private set
+            set
             {
-                isLoading = value;
-                OnPropertyChanged("IsLoading");
+                Messenger.Default.Send<bool>(value, "IsLoading");
             }
         }
 
@@ -108,21 +106,5 @@ namespace RockSmithTabExplorer
             }
         }
 
-        #region INotifyPropertyChanged
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChangedExplicit(string propertyName)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        protected virtual void OnPropertyChanged(string propertyName)// = null) [CallerMemberName]
-        {
-            OnPropertyChangedExplicit(propertyName);
-        }
-
-        #endregion
     }
 }
