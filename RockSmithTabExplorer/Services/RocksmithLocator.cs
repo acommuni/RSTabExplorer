@@ -13,7 +13,16 @@ namespace RockSmithTabExplorer
         public static string SteamFolder()
         {
             RegistryKey steamKey = Registry.LocalMachine.OpenSubKey("Software\\Valve\\Steam") ?? Registry.LocalMachine.OpenSubKey("Software\\Wow6432Node\\Valve\\Steam");
-            return steamKey.GetValue("InstallPath").ToString();
+            string res = null;
+            if (steamKey != null)
+            {
+                object value = steamKey.GetValue("InstallPath");
+                if (value != null)
+                {
+                    res = value.ToString();
+                }
+            }
+            return res;
         }
 
         public static List<string> LibraryFolders()
@@ -45,27 +54,43 @@ namespace RockSmithTabExplorer
         public static string Rocksmith2014FolderFromUbisoftKey()
         {
             RegistryKey ubiKey = Registry.LocalMachine.OpenSubKey(@"Software\Ubisoft\Rocksmith2014") ?? Registry.LocalMachine.OpenSubKey(@"Software\Wow6432Node\Ubisoft\Rocksmith2014");
-            return ubiKey.GetValue("installdir").ToString();
+            string res = null;
+            if (ubiKey != null)
+            {
+                object value = ubiKey.GetValue("installdir");
+                if (value != null)
+                {
+                    res = value.ToString();
+                }
+            }
+            return res;
         }
 
         public static string Rocksmith2014Folder()
         {
-            var appFolders = LibraryFolders().Select(x => x + "\\SteamApps\\common");
-            foreach (var folder in appFolders)
+            try
             {
-                try
+                var appFolders = LibraryFolders().Select(x => x + "\\SteamApps\\common");
+                foreach (var folder in appFolders)
                 {
-                    var matches = Directory.GetDirectories(folder, "Rocksmith2014");
-                    if (matches.Length >= 1)
+                    try
                     {
-                        return matches[0];
+                        var matches = Directory.GetDirectories(folder, "Rocksmith2014");
+                        if (matches.Length >= 1)
+                        {
+                            return matches[0];
+                        }
                     }
-                }
-                catch (DirectoryNotFoundException)
-                {
-                    //continue;
-                }
+                    catch (DirectoryNotFoundException)
+                    {
+                        //continue;
+                    }
 
+                }
+            }
+            catch (DirectoryNotFoundException)
+            {
+                //continue;
             }
 
             // Couldn't find folder, attempt another method
